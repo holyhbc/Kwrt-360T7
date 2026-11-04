@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: build-360t7-25.12
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   TZ: Asia/Shanghai
