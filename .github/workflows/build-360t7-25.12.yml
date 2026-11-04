@@ -50,7 +50,6 @@ jobs:
       - name: Add HomeProxy feed and install feeds
         run: |
           cd openwrt
-          echo "src-git kiddin9 https://github.com/kiddin9/op-packages.git;main" >> feeds.conf.default
           echo "src-git homeproxy https://github.com/immortalwrt/homeproxy.git" >> feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
@@ -62,7 +61,62 @@ jobs:
           cd openwrt
           make defconfig
           grep -E '^(CONFIG_TARGET_mediatek=y|CONFIG_TARGET_mediatek_filogic=y|CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7(-ubi)?=y|CONFIG_USE_APK=n|CONFIG_PACKAGE_(luci-app-homeproxy|sing-box)=m)' .config
+          grep -q '^# CONFIG_USE_APK is not set
+          grep -q '^CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7=y$' .config
+          grep -q '^CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubi=y$' .config
+
+      - name: Download sources
+        run: |
+          cd openwrt
+          make download -j8
+
+      - name: Compile firmware and selected packages
+        run: |
+          cd openwrt
+          NPROC="$(nproc)"
+          JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
+          echo "Building with -j${JOBS}"
+          make -j"${JOBS}" V=s
+
+      - name: Verify firmware and IPK packages
+        run: |
+          set -eux
+          cd openwrt
+          test -d bin/targets/mediatek/filogic
+          find bin/targets/mediatek/filogic -maxdepth 1 -type f -print
+          find bin/packages -type f \( -name '*homeproxy*.ipk' -o -name 'sing-box*.ipk' \) -print
+          find bin/packages -type f -name '*.ipk' | grep -q .
           grep -q '^CONFIG_USE_APK=n$' .config
+          mkdir -p ../build-metadata
+          cp .config ../build-metadata/360t7.config
+          cp ../source-version.txt ../build-metadata/
+          find bin/targets/mediatek/filogic bin/packages -type f -print0 | \
+            sort -z | xargs -0 sha256sum > ../build-metadata/SHA256SUMS.txt
+
+      - name: Upload 360T7 firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kwrt-25.12-360T7-firmware
+          path: openwrt/bin/targets/mediatek/filogic/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload IPK package repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kwrt-25.12-360T7-packages-IPK
+          path: openwrt/bin/packages/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload build configuration and checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kwrt-25.12-360T7-build-metadata
+          path: build-metadata/
+          if-no-files-found: error
+          retention-days: 90
+ .config
           grep -q '^CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7=y$' .config
           grep -q '^CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubi=y$' .config
 
