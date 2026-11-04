@@ -50,6 +50,7 @@ jobs:
       - name: Add HomeProxy feed and install feeds
         run: |
           cd openwrt
+          echo "src-git kiddin9 https://github.com/kiddin9/op-packages.git;main" >> feeds.conf.default
           echo "src-git homeproxy https://github.com/immortalwrt/homeproxy.git" >> feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
