@@ -122,25 +122,24 @@ jobs:
           cd openwrt
           make download -j8
 
-      - name: Normalize kernel configuration for non-interactive CI
+      - name: Compile firmware and selected packages
         shell: bash
         run: |
           set -euo pipefail
           cd openwrt
-          # Prepare/unpack the selected kernel first so its generated .config exists.
-          make target/linux/prepare V=s
-          mapfile -t kernel_configs < <(find build_dir -type f -path '*/linux-*/.config' -print)
-          if [[ "${#kernel_configs[@]}" -eq 0 ]]; then
-            echo "ERROR: prepared Linux kernel .config was not found"
-            find build_dir -maxdepth 5 -type d -name 'linux-*' -print || true
-            exit 1
-          fi
-          for config in "${kernel_configs[@]}"; do
-            kernel_dir="$(dirname "$config")"
-            echo "Applying kernel olddefconfig in $kernel_dir"
-            make -C "$kernel_dir" ARCH=arm64 olddefconfig
-          done
-
+          NPROC="$(nproc)"
+          JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
+          echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
+          # Kernel .config is generated during target/linux/compile, not prepare.
+          # Feed blank answers to Kconfig so newly introduced symbols take their
+          # upstream defaults instead of failing in non-interactive CI.
+          set +e
+          set +o pipefail
+          yes "" | make -j"${JOBS}" V=s
+          BUILD_STATUS=$?
+          set -o pipefail
+          set -e
+          exit "${BUILD_STATUS}"
       - name: Compile firmware and selected packages
         run: |
           cd openwrt
