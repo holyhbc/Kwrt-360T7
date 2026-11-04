@@ -140,14 +140,6 @@ jobs:
           set -o pipefail
           set -e
           exit "${BUILD_STATUS}"
-      - name: Compile firmware and selected packages
-        run: |
-          cd openwrt
-          NPROC="$(nproc)"
-          JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
-          echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
-          make -j"${JOBS}" V=s
-
       - name: Generate and verify OPKG package indexes
         run: |
           set -eux
