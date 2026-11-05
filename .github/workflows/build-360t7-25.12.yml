@@ -122,6 +122,37 @@ jobs:
           cd openwrt
           make download -j8
 
+      - name: Prepare kernel configuration non-interactively
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd openwrt
+
+          # Force OpenWrt to materialize the exact kernel build tree and its
+          # .config before the full build reaches kernel syncconfig.
+          make target/linux/prepare V=s
+
+          mapfile -t KERNEL_CONFIGS < <(find build_dir/target-* -type f -path '*/linux-*/.config' | sort)
+          if [[ "${#KERNEL_CONFIGS[@]}" -ne 1 ]]; then
+            printf 'Expected exactly one prepared kernel .config, found %s:\n' "${#KERNEL_CONFIGS[@]}"
+            printf '%s\n' "${KERNEL_CONFIGS[@]}"
+            exit 1
+          fi
+
+          KERNEL_CONFIG="${KERNEL_CONFIGS[0]}"
+          KERNEL_DIR="$(dirname "${KERNEL_CONFIG}")"
+          echo "Normalizing prepared kernel config: ${KERNEL_CONFIG}"
+
+          # olddefconfig resolves every newly introduced Kconfig symbol to
+          # its upstream default. Do this on the actual generated kernel tree,
+          # not the OpenWrt top-level .config.
+          make -C "${KERNEL_DIR}" ARCH=arm64 olddefconfig
+
+          if grep -Eq '^[^#].*\(NEW\)' "${KERNEL_CONFIG}"; then
+            echo "Kernel config still contains unresolved NEW symbols"
+            exit 1
+          fi
+
       - name: Compile firmware and selected packages
         shell: bash
         run: |
@@ -130,16 +161,7 @@ jobs:
           NPROC="$(nproc)"
           JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
           echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
-          # Kernel .config is generated during target/linux/compile, not prepare.
-          # Feed blank answers to Kconfig so newly introduced symbols take their
-          # upstream defaults instead of failing in non-interactive CI.
-          set +e
-          set +o pipefail
-          yes "" | make -j"${JOBS}" V=s
-          BUILD_STATUS=$?
-          set -o pipefail
-          set -e
-          exit "${BUILD_STATUS}"
+          make -j"${JOBS}" V=s
       - name: Generate and verify OPKG package indexes
         run: |
           set -eux
