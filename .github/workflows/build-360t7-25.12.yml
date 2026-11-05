@@ -57,6 +57,15 @@ jobs:
           echo "OpenWrt base commit: $(git -C openwrt rev-parse HEAD)" | tee -a source-version.txt
           cp -a kwrt-config/devices openwrt/
 
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo apt-get clean
+          sudo docker image prune -af || true
+          sudo mkdir -p -m 777 /mnt/openwrt/build_dir openwrt/staging_dir
+          ln -sf /mnt/openwrt/build_dir openwrt/build_dir
+
       - name: Apply Kiddin9 Kwrt customizations and feeds
         shell: bash
         run: |
@@ -89,10 +98,16 @@ jobs:
           /bin/bash devices/common/diy.sh
           /bin/bash devices/mediatek_filogic/diy.sh
 
-          while IFS= read -r -d '' patchfile; do
-            echo "Applying ${patchfile}"
-            patch -p1 --forward --batch -F 1 < "${patchfile}"
-          done < <(find devices/mediatek_filogic/patches -maxdepth 1 -type f -name '*.patch' ! -name '*.revert.patch' ! -name '*.bin.patch' -print0 | sort -z)
+          # kernel-defaults.patch makes the kernel build run `make olddefconfig`
+          # before compiling. Without it the kernel runs an interactive
+          # syncconfig for new config symbols and aborts on CI because there is
+          # no stdin to answer the prompts.
+          patch -d './' --no-backup-if-mismatch -p1 -F 1 -i devices/common/patches/kernel-defaults.patch
+
+          find "devices/mediatek_filogic/patches" -maxdepth 1 -type f -name '*.revert.patch' -print0 | sort -z | \
+            xargs -I % -t -0 -n 1 sh -c "patch -d './' -R --no-backup-if-mismatch -p1 -F 1 -i '%'"
+          find "devices/mediatek_filogic/patches" -maxdepth 1 -type f -name '*.patch' ! -name '*.revert.patch' ! -name '*.bin.patch' -print0 | sort -z | \
+            xargs -I % -t -0 -n 1 sh -c "patch -d './' --no-backup-if-mismatch -p1 -F 1 -i '%'"
 
           ./scripts/feeds update homeproxy
           ./scripts/feeds install -p homeproxy luci-app-homeproxy
@@ -125,25 +140,14 @@ jobs:
       - name: Compile firmware and selected packages
         shell: bash
         run: |
-          set -euo pipefail
           cd openwrt
-          NPROC="$(nproc)"
-          JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
+          JOBS="$(($(nproc) + 1))"
           echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
 
-          # Prepare the host tools and cross toolchain before invoking the
-          # Linux target directly. target/linux/compile does not itself build
-          # these top-level prerequisites, so running it first can leave m4
-          # and the aarch64 compiler unavailable in staging_dir.
-          make -j"${JOBS}" tools/install V=s
-          make -j"${JOBS}" toolchain/install V=s
-
-          # Kernel Kconfig may ask for defaults for newly introduced symbols.
-          # Keep only this target serial so its config prompts receive stdin.
-          # The subsequent full build uses OpenWrt's normal dependency graph.
-          set +o pipefail
-          yes "" | make -j1 target/linux/compile V=s
-          set -o pipefail
+          # Let OpenWrt's top-level dependency graph handle tools, the cross
+          # toolchain and target/linux prepare (which merges the kernel config).
+          # Invoking target/linux/compile directly skips the kernel olddefconfig
+          # step and makes the kernel prompt for new symbols, breaking syncconfig.
           make -j"${JOBS}" V=s
 
       - name: Generate and verify OPKG package indexes
