@@ -98,11 +98,15 @@ jobs:
           /bin/bash devices/common/diy.sh
           /bin/bash devices/mediatek_filogic/diy.sh
 
-          # kernel-defaults.patch makes the kernel build run `make olddefconfig`
-          # before compiling. Without it the kernel runs an interactive
-          # syncconfig for new config symbols and aborts on CI because there is
-          # no stdin to answer the prompts.
-          patch -d './' --no-backup-if-mismatch -p1 -F 1 -i devices/common/patches/kernel-defaults.patch
+          # Apply the shared Kiddin9 Kwrt patches together with the
+          # target-specific ones. The shared set is required, e.g.
+          # kernel-defaults.patch makes the kernel run `make olddefconfig` before
+          # compiling (otherwise it prompts for new symbols and aborts) and
+          # autoreconf.patch sets PKG_FIXUP:=autoreconf for libnftnl.
+          # LINUX_VERSION.patch is intentionally skipped so the OPKG feed keeps
+          # the standard bin/packages layout used by the publish steps below.
+          cp -rn devices/common/patches/. devices/mediatek_filogic/patches/
+          rm -f devices/mediatek_filogic/patches/LINUX_VERSION.patch
 
           find "devices/mediatek_filogic/patches" -maxdepth 1 -type f -name '*.revert.patch' -print0 | sort -z | \
             xargs -I % -t -0 -n 1 sh -c "patch -d './' -R --no-backup-if-mismatch -p1 -F 1 -i '%'"
