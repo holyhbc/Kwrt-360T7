@@ -131,11 +131,16 @@ jobs:
           JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
           echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
 
-          # Linux Kconfig syncconfig can ask about new kernel symbols.
-          # GNU make redirects child stdin to /dev/null in parallel mode, so
-          # feeding answers to a parallel full build is unreliable. Build the
-          # Linux target serially first, allowing Kconfig to read its defaults.
-          # Then run the complete firmware/package build in parallel.
+          # Prepare the host tools and cross toolchain before invoking the
+          # Linux target directly. target/linux/compile does not itself build
+          # these top-level prerequisites, so running it first can leave m4
+          # and the aarch64 compiler unavailable in staging_dir.
+          make -j"${JOBS}" tools/install V=s
+          make -j"${JOBS}" toolchain/install V=s
+
+          # Kernel Kconfig may ask for defaults for newly introduced symbols.
+          # Keep only this target serial so its config prompts receive stdin.
+          # The subsequent full build uses OpenWrt's normal dependency graph.
           set +o pipefail
           yes "" | make -j1 target/linux/compile V=s
           set -o pipefail
