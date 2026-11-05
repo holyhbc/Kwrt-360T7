@@ -131,14 +131,15 @@ jobs:
           JOBS="$((NPROC > 2 ? NPROC - 1 : 1))"
           echo "Building on GitHub Actions x86_64 runner with -j${JOBS}"
 
-          # Kernel Kconfig may gain new symbols when the selected Kwrt kernel
-          # is built against the current OpenWrt source. Feed empty answers so
-          # Kconfig consistently selects each symbol's upstream default.
-          # Disable pipefail only for this pipeline: yes exits with SIGPIPE
-          # after make has consumed the required answers; make's exit status
-          # remains the pipeline status.
+          # Linux Kconfig syncconfig can ask about new kernel symbols.
+          # GNU make redirects child stdin to /dev/null in parallel mode, so
+          # feeding answers to a parallel full build is unreliable. Build the
+          # Linux target serially first, allowing Kconfig to read its defaults.
+          # Then run the complete firmware/package build in parallel.
           set +o pipefail
-          yes "" | make -j"${JOBS}" V=s
+          yes "" | make -j1 target/linux/compile V=s
+          set -o pipefail
+          make -j"${JOBS}" V=s
 
       - name: Generate and verify OPKG package indexes
         run: |
