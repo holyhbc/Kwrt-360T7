@@ -6,11 +6,11 @@ on:
       - 360t7-main
     paths:
       - ".github/workflows/build-openwrt25.12-360t7main.yml"
-      - "devices/360t7-main/**"
+      - "devices/360t7-25.12/**"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: build-360t7-main
