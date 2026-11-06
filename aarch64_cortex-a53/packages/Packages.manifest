@@ -1,0 +1,570 @@
+Package: bash
+Version: 5.3-r5
+Depends: libc, libncurses6, libreadline8
+Provides: bash-any
+Source: feeds/packages/feeds/packages/utils/bash
+SourceName: bash
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1753882072
+URL: https://www.gnu.org/software/bash/
+CPE-ID: cpe:/a:gnu:bash
+Maintainer: Wei-Ting Yang <williamatcg@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 1075200
+Filename: bash_5.3-r5_aarch64_cortex-a53.ipk
+Size: 498159
+SHA256sum: 7822d0e54250dafd36b90f4b08573211e703c6b53fa61ce5f0bbed589d21d291
+Description:  Bash is an sh-compatible command language interpreter that executes
+ commands read from the standard input or from a file. Bash also
+ incorporates useful features from the Korn and C shells (ksh and csh).
+
+Package: bc
+Version: 1.08.2-r1
+Depends: libc, libreadline8, libncurses6
+Provides: bc-any
+Source: feeds/packages/feeds/packages/utils/bc
+SourceName: bc
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1748205086
+URL: https://www.gnu.org/software/bc/
+CPE-ID: cpe:/a:gnu:bc
+Architecture: aarch64_cortex-a53
+Installed-Size: 81920
+Filename: bc_1.08.2-r1_aarch64_cortex-a53.ipk
+Size: 34431
+SHA256sum: a330f433a7519944bc54239febf456c8a7ba9483e7df1c57e9427c9ee924552c
+Description:  bc is a language that supports arbitrary precision numbers with
+ interactive execution of statements.
+
+Package: btrfs-progs
+Version: 6.11-r3
+Depends: libc, libattr, libuuid1, libmount1, zlib, libblkid1, liblzo2, libpthread, kmod-fs-btrfs
+Provides: btrfs-progs-any
+Source: feeds/packages/feeds/packages/utils/btrfs-progs
+SourceName: btrfs-progs
+License: GPL-2.0-only
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1726585116
+URL: https://btrfs.readthedocs.io
+Maintainer: Karel Kočí <karel.koci@nic.cz>
+Architecture: aarch64_cortex-a53
+Installed-Size: 2355200
+Filename: btrfs-progs_6.11-r3_aarch64_cortex-a53.ipk
+Size: 1136451
+SHA256sum: 8848c456928cf1f99eff467ab1ae2dd04138890635b5170aae44b28421e96b84
+Description:  Btrfs is a new copy on write filesystem for Linux aimed at implementing
+ advanced features while focusing on fault tolerance, repair and easy
+ administration. Initially developed by Oracle, Btrfs is licensed under the
+ GPL and open for contribution from anyone.
+
+Package: cgi-io
+Version: 2026.07.21~31cb3c89-r1
+Depends: libc, libubox20260213, libubus20251202
+Provides: cgi-io-any
+Source: feeds/packages/feeds/packages/net/cgi-io
+SourceName: cgi-io
+License: GPL-2.0-or-later
+Section: net
+SourceDateEpoch: 1784596422
+Maintainer: John Crispin <blogic@openwrt.org>
+Architecture: aarch64_cortex-a53
+Installed-Size: 30720
+Filename: cgi-io_2026.07.21~31cb3c89-r1_aarch64_cortex-a53.ipk
+Size: 10570
+SHA256sum: 466f0d7b48c561f134b25a3490b2c1e2e6c2f253768d5ae668b56d692924efeb
+Description:  This package contains an cgi utility that is useful for up/downloading files
+
+Package: coreutils-stat
+Version: 9.9-r2
+Depends: libc, coreutils
+Provides: coreutils-stat-any
+Alternatives: 300:/bin/stat:/usr/libexec/stat-coreutils
+Source: feeds/packages/feeds/packages/utils/coreutils
+SourceName: coreutils
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1762782832
+URL: https://www.gnu.org/software/coreutils/
+CPE-ID: cpe:/a:gnu:coreutils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_cortex-a53
+Installed-Size: 112640
+Filename: coreutils-stat_9.9-r2_aarch64_cortex-a53.ipk
+Size: 52116
+SHA256sum: 8ae184db423155fc6d86b51ca1b261ab69885d17691fb929afc8837cd6f3c75a
+Description:  Full version of standard GNU stat utility.
+
+Package: coreutils
+Version: 9.9-r2
+Depends: libc
+Provides: coreutils-any
+Source: feeds/packages/feeds/packages/utils/coreutils
+SourceName: coreutils
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1762782832
+URL: https://www.gnu.org/software/coreutils/
+CPE-ID: cpe:/a:gnu:coreutils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_cortex-a53
+Installed-Size: 10240
+Filename: coreutils_9.9-r2_aarch64_cortex-a53.ipk
+Size: 1133
+SHA256sum: a49c08962450adba4fd0e7dcc77f9b75ec8af40597ca50a718e691ba3ea1bddb
+Description:  Full versions of standard GNU utilities. If an equivalent Busybox applet is
+ available, you should consider compiling that instead as Busybox applets are
+ usually smaller, at the expense of reduced functionality.
+
+Package: curl
+Version: 8.23.0-r1
+Depends: libc, libcurl4
+Provides: curl-any
+Source: feeds/packages/feeds/packages/net/curl
+SourceName: curl
+License: MIT
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1791957245
+URL: https://curl.se/
+CPE-ID: cpe:/a:haxx:libcurl
+Architecture: aarch64_cortex-a53
+Installed-Size: 174080
+Filename: curl_8.23.0-r1_aarch64_cortex-a53.ipk
+Size: 76207
+SHA256sum: 0db704dab92e4f1a0ba130d6dbe11cfd5d163e17ace3e34102edbf5af49ed024
+Description:  A client-side URL transfer utility
+
+Package: htop
+Version: 3.5.3-r1
+Depends: libc, libncurses6
+Provides: htop-any
+Source: feeds/packages/feeds/packages/admin/htop
+SourceName: htop
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: admin
+SourceDateEpoch: 1786896157
+URL: https://hisham.hm/htop/
+CPE-ID: cpe:/a:htop:htop
+Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 307200
+Filename: htop_3.5.3-r1_aarch64_cortex-a53.ipk
+Size: 136231
+SHA256sum: 37cc1485c1cdcd951f48d18d67f6e4076e10452a465e243eedd32078303f3cfc
+Description:  Htop is an ncursed-based process viewer similar to top, but
+ it allows to scroll the list vertically and horizontally to
+ see all processes and their full command lines.
+
+Package: libattr
+Version: 2.5.2-r3
+Depends: libc
+Provides: libattr-any
+Source: feeds/packages/feeds/packages/utils/attr
+SourceName: attr
+License: LGPL-2.1-or-later
+LicenseFiles: doc/COPYING.LGPL
+Section: libs
+SourceDateEpoch: 1705199994
+URL: http://savannah.nongnu.org/projects/attr
+CPE-ID: cpe:/a:attr_project:attr
+Maintainer: Maxim Storchak <m.storchak@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 30720
+Filename: libattr_2.5.2-r3_aarch64_cortex-a53.ipk
+Size: 7606
+SHA256sum: 06e73e3b09a52fc663318e46a7e8bc88906326afb06851b3c4de211b30dff63f
+Description:  Extended attributes support
+ This package provides libattr
+
+Package: libcap-ng
+Version: 0.8.4-r2
+Depends: libc
+Provides: libcap-ng-any
+Source: feeds/packages/feeds/packages/libs/libcap-ng
+SourceName: libcap-ng
+License: GPL-2.0-or-later LGPL-2.1-or-later
+LicenseFiles: License
+Section: libs
+SourceDateEpoch: 1703085789
+URL: https://people.redhat.com/sgrubb/libcap-ng/index.html
+CPE-ID: cpe:/a:libcap-ng_project:libcap-ng
+Maintainer: Lucian CRISTIAN <lucian.cristian@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 30720
+Filename: libcap-ng_0.8.4-r2_aarch64_cortex-a53.ipk
+Size: 9444
+SHA256sum: 8969e7f1910ef1d059a105a51c922fb9ccd48232d1bc52bdcc85fd46b9b00a38
+Description:  POSIX capabilities library library
+
+Package: libcurl4
+Version: 8.23.0-r1
+Depends: libc, libopenssl3, zlib, libnghttp2-14, ca-bundle
+Provides: libcurl-any, libcurl, libcurl-any4
+Source: feeds/packages/feeds/packages/net/curl
+SourceName: curl
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1791957245
+URL: https://curl.se/
+ABIVersion: 4
+CPE-ID: cpe:/a:haxx:libcurl
+Architecture: aarch64_cortex-a53
+Installed-Size: 593920
+Filename: libcurl4_8.23.0-r1_aarch64_cortex-a53.ipk
+Size: 277373
+SHA256sum: b48019a84d54d56f02911a0f1be2fe0efb0681072e688bbc8e71959b871bf6e1
+Description:  A client-side URL transfer library
+
+Package: liblzo2
+Version: 2.10-r5
+Depends: libc
+Provides: liblzo-any, liblzo, liblzo-any2
+Source: feeds/packages/feeds/packages/libs/lzo
+SourceName: lzo
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1488398054
+URL: http://www.oberhumer.com/opensource/lzo/
+ABIVersion: 2
+CPE-ID: cpe:/a:oberhumer:lzo
+Architecture: aarch64_cortex-a53
+Installed-Size: 112640
+Filename: liblzo2_2.10-r5_aarch64_cortex-a53.ipk
+Size: 39179
+SHA256sum: 4f1ebf516f045983655dacfcf1c9689596e63fe6c4035663dce9e6ffda7fcea8
+Description:  LZO is a data compression library which is suitable for data de-/compression
+ in real-time. This means it favours speed over compression ratio.
+
+Package: libnghttp2-14
+Version: 1.70.0-r1
+Depends: libc
+Provides: libnghttp2-any, libnghttp2, libnghttp2-any-14
+Source: feeds/packages/feeds/packages/libs/nghttp2
+SourceName: nghttp2
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1785328200
+ABIVersion: -14
+CPE-ID: cpe:/a:nghttp2:nghttp2
+Maintainer: Hans Dedecker <dedeckeh@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 163840
+Filename: libnghttp2-14_1.70.0-r1_aarch64_cortex-a53.ipk
+Size: 69005
+SHA256sum: 4b2fe50a94f0bd23f35b5d719783f5c1e7ce6913c2c17aa0330ed3b49764c2cb
+Description:  HTTP/2 C Library
+
+Package: libparted
+Version: 3.6-r2
+Depends: libc, libblkid1, libuuid1
+Provides: libparted-any
+Source: feeds/packages/feeds/packages/utils/parted
+SourceName: parted
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1681169562
+CPE-ID: cpe:/a:parted_project:parted
+Maintainer: Oskari Rauta <oskari.rauta@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 440320
+Filename: libparted_3.6-r2_aarch64_cortex-a53.ipk
+Size: 189252
+SHA256sum: 99afbf67a7e5eeb793e55732f828e44388020a36450235d27156e94c87af96e4
+Description:  GNU Parted shared library
+
+Package: nano
+Version: 9.3-r1
+Depends: libc, libncurses6
+Provides: nano-any
+Source: feeds/packages/feeds/packages/utils/nano
+SourceName: nano
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1792564765
+URL: https://www.nano-editor.org/
+CPE-ID: cpe:/a:gnu:nano
+Maintainer: Hannu Nyman <hannu.nyman@iki.fi>
+Architecture: aarch64_cortex-a53
+Installed-Size: 163840
+Filename: nano_9.3-r1_aarch64_cortex-a53.ipk
+Size: 79398
+SHA256sum: 501aa1eb47c70be86ebcf07e79dceacfcfdccbb82ed45e9092c433916e74c1cf
+Description:  Nano is a small and simple text editor for use on the terminal.
+ 
+ Nano started as an enhanced clone of the Pico text editor.
+ Nowadays Nano wants to be a generally useful editor with sensible
+ defaults (linewise scrolling, no automatic line breaking).
+ 
+ Nano is an official GNU package.
+
+Package: nginx-mod-luci
+Version: 1.26.3-r4
+Depends: libc, uwsgi, uwsgi-luci-support, nginx, nginx-mod-ubus
+Provides: nginx-mod-luci-any
+Source: feeds/packages/feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1793901546
+URL: http://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 10240
+Filename: nginx-mod-luci_1.26.3-r4_aarch64_cortex-a53.ipk
+Size: 1876
+SHA256sum: bb6a3b01aa94987dd5bb61b26ff00d0bb043187b0e0d7317d4ad5cf5bbf07dfc
+Description:  Support file for LuCI in nginx. Include custom nginx configuration, autostart script for uwsgi.
+
+Package: nginx-mod-ubus
+Version: 1.26.3-r4
+Depends: libc, nginx, libubus20251202, libjson-c5, libblobmsg-json20260213
+Provides: nginx-mod-ubus-any
+Source: feeds/packages/feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1793901546
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 30720
+Filename: nginx-mod-ubus_1.26.3-r4_aarch64_cortex-a53.ipk
+Size: 9309
+SHA256sum: ae87161417888edbeed3fd3d5ca1cf1534aade3615faddb848421c77c628bfcc
+Description:  Enable UBUS api support directly from the server.
+
+Package: nginx-ssl-util
+Version: 1.7-r2
+Depends: libc, libstdcpp6, libuci20250120, libubus20251202, libubox20260213, libpthread, libopenssl3, libpcre2
+Conflicts: nginx-ssl-util-nopcre
+Provides: nginx-ssl-util-any
+Source: feeds/packages/feeds/packages/net/nginx-util
+SourceName: nginx-util
+Section: net
+SourceDateEpoch: 1793963123
+Maintainer: Peter Stadler <peter.stadler@student.uibk.ac.at>
+Architecture: aarch64_cortex-a53
+Installed-Size: 143360
+Filename: nginx-ssl-util_1.7-r2_aarch64_cortex-a53.ipk
+Size: 55406
+SHA256sum: f490a0cf4f50cdc678e7cba82b0119f826ab08354cc7884ef7e16045ece6fa08
+Description:  Utility that builds dynamically LAN listen directives for Nginx.
+ Furthermore, it manages SSL directives for its server parts and can create
+ corresponding (self-signed) certificates. It uses the PCRE library for performance.
+
+Package: nginx-ssl
+Version: 1.26.3-r4
+Depends: nginx-ssl-util (>=1.5-r1), libc, libopenssl3, libpcre2, libpthread, libxml2-16, nginx-ssl-util, zlib
+Conflicts: nginx-full
+Provides: nginx-ssl-any, nginx
+Source: feeds/packages/feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1793901546
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 880640
+Filename: nginx-ssl_1.26.3-r4_aarch64_cortex-a53.ipk
+Size: 380341
+SHA256sum: 21737269a5dbde1961b859affbcc02e7cc8f16e2eff42b7d21e17994b20e00c6
+Description:  nginx is an HTTP and reverse proxy server, as well as a mail proxy server, written by Igor Sysoev. This variant is compiled with SSL support enabled. To enable additional module select them in the nginx default configuration menu.
+
+Package: openssh-sftp-server
+Version: 10.6_p2-r1
+Depends: libc
+Provides: openssh-sftp-server-any
+Source: feeds/packages/feeds/packages/net/openssh
+SourceName: openssh
+License: BSD-2-Clause BSD-3-Clause ISC
+LicenseFiles: LICENCE
+Section: net
+SourceDateEpoch: 1793836646
+URL: https://www.openssh.com/
+CPE-ID: cpe:/a:openbsd:openssh
+Maintainer: John Audia <therealgraysky@proton.me>
+Architecture: aarch64_cortex-a53
+Installed-Size: 153600
+Filename: openssh-sftp-server_10.6_p2-r1_aarch64_cortex-a53.ipk
+Size: 63116
+SHA256sum: 795976d4243ea6607a7c06e960e789d93f4dab4429ee7df5a1d650b326bdd39f
+Description:  OpenSSH SFTP server.
+
+Package: parted
+Version: 3.6-r2
+Depends: libc, libparted, libreadline8, libncurses6
+Provides: parted-any
+Source: feeds/packages/feeds/packages/utils/parted
+SourceName: parted
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: utils
+SourceDateEpoch: 1681169562
+CPE-ID: cpe:/a:parted_project:parted
+Maintainer: Oskari Rauta <oskari.rauta@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 81920
+Filename: parted_3.6-r2_aarch64_cortex-a53.ipk
+Size: 30934
+SHA256sum: 55e2c7c3646d940fc9abbddb0d7ae797ccf0cd0f28978c9effbe781f237bdbd8
+Description:  GNU Parted manipulates partition tables. This is useful for
+ creating space for new operating systems, reorganizing
+ disk usage, copying data on hard disks and disk imaging.
+
+Package: uwsgi-cgi-plugin
+Version: 2.0.30-r1
+Depends: libc, uwsgi
+Provides: uwsgi-cgi-plugin-any
+Source: feeds/packages/feeds/packages/net/uwsgi
+SourceName: uwsgi
+License: GPL-2.0-or-later
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1748938203
+CPE-ID: cpe:/a:unbit:uwsgi
+Maintainer: Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 30720
+Filename: uwsgi-cgi-plugin_2.0.30-r1_aarch64_cortex-a53.ipk
+Size: 9806
+SHA256sum: 890f4d395e825d6c8ac5ad7b171e39485b20e0b9e0253d432a27e527b8b954e1
+Description:  The CGI plugin for the uWSGI project.
+
+Package: uwsgi-luci-support
+Version: 2.0.30-r1
+Depends: libc, uwsgi, uwsgi-syslog-plugin, uwsgi-cgi-plugin
+Provides: uwsgi-luci-support-any
+Source: feeds/packages/feeds/packages/net/uwsgi
+SourceName: uwsgi
+License: GPL-2.0-or-later
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1748938203
+CPE-ID: cpe:/a:unbit:uwsgi
+Maintainer: Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 10240
+Filename: uwsgi-luci-support_2.0.30-r1_aarch64_cortex-a53.ipk
+Size: 2098
+SHA256sum: 3ccdd71b61fa8a8cdb509eb2b34b61be9898eee3fc736d93ced6fd1413265367
+Description:  Support files for LuCI on Nginx
+
+Package: uwsgi-syslog-plugin
+Version: 2.0.30-r1
+Depends: libc, uwsgi
+Provides: uwsgi-syslog-plugin-any
+Source: feeds/packages/feeds/packages/net/uwsgi
+SourceName: uwsgi
+License: GPL-2.0-or-later
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1748938203
+CPE-ID: cpe:/a:unbit:uwsgi
+Maintainer: Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 10240
+Filename: uwsgi-syslog-plugin_2.0.30-r1_aarch64_cortex-a53.ipk
+Size: 2498
+SHA256sum: 64438e4dc9a9b3876a44f99c4f8e414773bd38c3348cb390c4518cf9f38b7161
+Description:  The Syslog plugin for the uWSGI project.
+
+Package: uwsgi
+Version: 2.0.30-r1
+Depends: libc, libpcre2, libcap, libuuid1
+Provides: uwsgi-any
+Source: feeds/packages/feeds/packages/net/uwsgi
+SourceName: uwsgi
+License: GPL-2.0-or-later
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1748938203
+URL: https://uwsgi-docs.readthedocs.io/en/latest/
+CPE-ID: cpe:/a:unbit:uwsgi
+Maintainer: Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64_cortex-a53
+Installed-Size: 1013760
+Filename: uwsgi_2.0.30-r1_aarch64_cortex-a53.ipk
+Size: 316794
+SHA256sum: be3f94c0d8b4aaa19c66400fc74a7208693d7aaac4694cd6153360a97c1fbddc
+Description:  The uWSGI project (to be used together with nginx or nginx-ssl).
+
+Package: wget-ssl
+Version: 1.25.0-r3
+Depends: libc, libpcre2, zlib, libopenssl3, librt
+Provides: wget-ssl-any, wget, wget-any
+Alternatives: 400:/usr/bin/wget:/usr/libexec/wget-ssl
+Source: feeds/packages/feeds/packages/net/wget
+SourceName: wget
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1731274298
+URL: https://www.gnu.org/software/wget/index.html
+CPE-ID: cpe:/a:gnu:wget
+Architecture: aarch64_cortex-a53
+Installed-Size: 450560
+Filename: wget-ssl_1.25.0-r3_aarch64_cortex-a53.ipk
+Size: 217291
+SHA256sum: 6715837e7d787e075029bc297c7084cc68c68768ef3e93973a26bc16c73e4b49
+Description:  Wget is a network utility to retrieve files from the Web using http
+ and ftp, the two most widely used Internet protocols. It works
+ non-interactively, so it will work in the background, after having
+ logged off. The program supports recursive retrieval of web-authoring
+ pages as well as ftp sites -- you can use wget to make mirrors of
+ archives and home pages or to travel the Web like a WWW robot.
+ This package is built with SSL support.
+
+Package: zoneinfo-asia
+Version: 2026f-r1
+Depends: libc, zoneinfo-core
+Provides: zoneinfo-asia-any
+Source: feeds/packages/feeds/packages/utils/zoneinfo
+SourceName: zoneinfo
+License: Unlicense
+Section: utils
+SourceDateEpoch: 1793901546
+Maintainer: Vladimir Ulrich <admin@evl.su>
+Architecture: aarch64_cortex-a53
+Installed-Size: 174080
+Filename: zoneinfo-asia_2026f-r1_aarch64_cortex-a53.ipk
+Size: 31155
+SHA256sum: b1cd222a8c9e6cbc0828c7c659185248200fffd83e5320e416bedf7695b0c560
+Description:  Zone Information (Asia)
+
+Package: zoneinfo-core
+Version: 2026f-r1
+Depends: libc
+Provides: zoneinfo-core-any
+Source: feeds/packages/feeds/packages/utils/zoneinfo
+SourceName: zoneinfo
+License: Unlicense
+Section: utils
+SourceDateEpoch: 1793901546
+Maintainer: Vladimir Ulrich <admin@evl.su>
+Architecture: aarch64_cortex-a53
+Installed-Size: 112640
+Filename: zoneinfo-core_2026f-r1_aarch64_cortex-a53.ipk
+Size: 22968
+SHA256sum: eeb82bad9de01328d7f298486325794f9f14a9a64da511f4a0adcca5ffca132f
+Description:  Zone Information (core)
+
