@@ -171,7 +171,12 @@ jobs:
           find bin/packages -type f -name 'Packages.gz' | grep -q .
           find bin/packages -type f -name '*homeproxy*.ipk' | grep -q .
           find bin/packages -type f -name 'sing-box*.ipk' | grep -q .
-          find bin/packages -type f \( -name 'kmod-mt76-core*.ipk' -o -name 'kmod-mt7915e*.ipk' \) | grep -q .
+          # Kernel modules live under the target directory (OpenWrt downloads
+          # layout), while user-space packages live under bin/packages.
+          find bin/targets/mediatek/filogic/packages -type f \
+            \( -name 'kmod-mt76-core*.ipk' -o -name 'kmod-mt7915e*.ipk' \) | grep -q .
+          find bin/targets/mediatek/filogic -maxdepth 1 -type f \
+            -name 'kwrt-mediatek-filogic-qihoo_360t7-squashfs-sysupgrade.bin' | grep -q .
           grep -q '^# CONFIG_USE_APK is not set$' .config
           printf '%s\\n' \
             'Qihoo 360T7 - Kiddin9 Kwrt 25.12 OPKG package feed' \
