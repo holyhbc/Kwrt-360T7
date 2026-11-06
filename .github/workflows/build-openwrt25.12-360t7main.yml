@@ -1,4 +1,4 @@
-name: Build Qihoo 360T7 - Kwrt 25.12
+name: Build Qihoo 360T7 - Kwrt 25.12 - main
 
 on:
   push:
