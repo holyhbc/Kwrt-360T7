@@ -195,8 +195,12 @@ jobs:
       - name: Upload 360T7 firmware
         uses: actions/upload-artifact@v4
         with:
+          # Only the 360T7 images; the whole target directory also contains the
+          # multi-hundred-MB imagebuilder and every other device's packages.
           name: Kiddin9-Kwrt-25.12-360T7-firmware
-          path: openwrt/bin/targets/mediatek/filogic/
+          path: |
+            openwrt/bin/targets/mediatek/filogic/kwrt-mediatek-filogic-qihoo_360t7-*
+            openwrt/bin/targets/mediatek/filogic/sha256sums
           if-no-files-found: error
           retention-days: 30
 
